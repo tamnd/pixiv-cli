@@ -5,24 +5,30 @@ import (
 	"strings"
 )
 
+// Host is the site this client talks to.
+const Host = "www.pixiv.net"
+
+// BaseURL is the root every request is built from.
+const BaseURL = "https://" + Host
+
 // Illust is the record emitted for a ranked illustration.
 type Illust struct {
-	Rank     int    `json:"rank"`
-	Title    string `json:"title"`
-	Artist   string `json:"artist"`
-	Tags     string `json:"tags"`
-	Type     string `json:"type"`
-	Pages    int    `json:"pages"`
-	Date     string `json:"date"`
-	IllustID string `json:"illust_id"`
-	URL      string `json:"url"`
+	Rank     int    `json:"rank"               kit:"id" table:"rank"`
+	Title    string `json:"title"                       table:"title"`
+	Artist   string `json:"artist"                      table:"artist"`
+	Tags     string `json:"tags"                        table:"tags"`
+	Type     string `json:"type"                        table:"type"`
+	Pages    int    `json:"pages"                       table:"pages"`
+	Date     string `json:"date"                        table:"date"`
+	IllustID string `json:"illust_id"                   table:"illust_id"`
+	URL      string `json:"url"                         table:"url,url"`
 }
 
 // ModeInfo describes one ranking mode / content pair.
 type ModeInfo struct {
-	Mode        string `json:"mode"`
-	Content     string `json:"content"`
-	Description string `json:"description"`
+	Mode        string `json:"mode"        kit:"id" table:"mode"`
+	Content     string `json:"content"              table:"content"`
+	Description string `json:"description"          table:"description"`
 }
 
 // Modes returns every supported ranking combination.
